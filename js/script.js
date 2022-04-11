@@ -8,35 +8,38 @@ let nonNumericBtn = {
     "=": calculate,
 }
 
-function cleanDisplay() {
-    
-}
-
-function calculate() {
-
-}
-
-document.querySelector('#clear').addEventListener('click', function() {
-    display.textContent = '';
-})
-
+// adds every button event listener
 buttons.forEach(function (btn) {
     let btnText = btn.textContent;
-    console.log(btn);
+    if (btnText.match('[0-9\-+*/.]')) {
+        btn.addEventListener('click', function(e) {
+            // refreshs the display with the button clicked
+            display.textContent += btnText;
+        });
+    } else if (nonNumericBtn[btnText] !== undefined) {
+        btn.addEventListener('click', nonNumericBtn[btnText]);
+    }
 })
 
-
+function cleanDisplay() {
+    // empties calc display
+    display.textContent = '';
+}
+function calculate() {
+    // evaluates current expression on calc display
+    display.textContent = eval(display.textContent);
+}
 
 
 // Implements keyboard assist for calculator
 document.addEventListener('keydown', function(e) {
     let keyCode = e.key.toLowerCase();
     console.log(keyCode);
-    // checks key pressed for numeric + operators
+    // checks key pressed for numeric + operators and simulates the button click
     if (keyCode.match('[0-9\-+*/.]')) {
         console.log(keyCode);
         let button; 
-        buttons.forEach( function (btn) {
+        buttons.forEach(function (btn) {
             if (btn.textContent === keyCode) {
                 button = btn;
             }
@@ -54,16 +57,15 @@ document.addEventListener('keydown', function(e) {
     }
 })
 
-function simulateClick(button) {
+function simulateClick(btn) {
     // This calls the event listener for the 
     // respective button
-    button.click();
+    btn.click();
 
-    // Simulates button click visually doing:
-    // adds an custom class and removes it after 100
-    // miliseconds (0.1s)
-    button.classList.add('activeState');
+    // Simulates button click visually by adding an custom class
+    // and removing it after 100 miliseconds (0.1s)
+    btn.classList.add('activeState');
     window.setTimeout(function() {
-        button.classList.remove('activeState');        
+        btn.classList.remove('activeState');        
     }, 100);
 }
