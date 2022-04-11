@@ -8,7 +8,7 @@ let nonNumericBtn = {
     "=": calculate,
 }
 
-// adds every button event listener
+// adds every button's event listener
 buttons.forEach(function (btn) {
     let btnText = btn.textContent;
     if (btnText.match('[0-9\-+*/.]')) {
