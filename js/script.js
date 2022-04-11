@@ -1,8 +1,19 @@
 let display = document.getElementById('calc-display');
 let buttons = document.querySelectorAll('button');
-// gambiarra para conseguir adicionar listeners aos botões não numéricos
+// gambiarra para conseguir adicionar listeners aos botões não numéricos;
+// o texto de um botão aponta para uma função específica que determinará a ação desse botão
+// key - value => "texto do botão" - "função com ação do botão"
 let nonNumericBtn = {
-    "C": delete
+    "C": cleanDisplay,
+    "=": calculate,
+}
+
+function cleanDisplay() {
+    
+}
+
+function calculate() {
+
 }
 
 document.querySelector('#clear').addEventListener('click', function() {
