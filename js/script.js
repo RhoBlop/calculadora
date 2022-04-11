@@ -1,14 +1,21 @@
 let display = document.getElementById('calc-display');
 let buttons = document.querySelectorAll('button');
+// gambiarra para conseguir adicionar listeners aos botões não numéricos
+let nonNumericBtn = {
+    "C": delete
+}
 
 document.querySelector('#clear').addEventListener('click', function() {
     display.textContent = '';
 })
 
-buttons.forEach( function (btn) {
+buttons.forEach(function (btn) {
     let btnText = btn.textContent;
-
+    console.log(btn);
 })
+
+
+
 
 // Implements keyboard assist for calculator
 document.addEventListener('keydown', function(e) {
